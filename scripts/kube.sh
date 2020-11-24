@@ -2,7 +2,7 @@
 
 wget https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
 
-cat <<EOT >> ~/.profile
+cat <<EOT >> ~/.bashrc
 source <(kubectl completion bash)
 alias k=kubectl
 alias kn='kubectl config set-context --current --namespace '
@@ -17,4 +17,4 @@ source ~/kube-ps1.sh
 PS1='[\u@\h \W \$(kube_ps1)]\$ '
 EOT
 
-. ~/.profile
+. ~/.bashrc
