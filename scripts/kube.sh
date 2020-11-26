@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-wget https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+wget -q https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh -P ~/
 
 cat <<EOT >> ~/.bashrc
 source <(kubectl completion bash)
