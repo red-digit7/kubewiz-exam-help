@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-wget -q https://cutt.ly/kubewiz-setup -O - | sh
-
-# add tmux, k9s
+wget -q https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh -P ~/
 
 cat <<EOBASHRC >> ~/.bashrc
 source <(kubectl completion bash)
