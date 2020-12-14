@@ -9,7 +9,8 @@ function loadEnv() {
   . ~/.bashrc
 }
 
-function testKubectlCompletion() { 
+function testKubectlCompletion() {
+  complete -p | grep kubectl
 }
 
 loadEnv
