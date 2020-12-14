@@ -1,0 +1,29 @@
+name: Scripts CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+      - 'feature/**'
+      - 'dependabot/**'
+    paths:
+      - 'scripts/**'
+
+jobs:
+  ScriptsCI:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Minikube
+        uses: manusa/actions-setup-minikube@v2.1.0
+        with:
+          minikube version: 'v1.13.1'
+          kubernetes version: 'v1.19.2'
+          github token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Test
+        shell: bash
+        working-directory: scripts
+        run: ./test/core.test.sh
+        
