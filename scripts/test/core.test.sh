@@ -5,8 +5,13 @@ set -e
 DIR=$(dirname $(realpath $BASH_SOURCE))
 
 loadEnv() {
+  echo "leading $DIR/../src/core.sh"
   source $DIR/../src/core.sh
+  echo "source $DIR/../src/core.sh returned $?"
+
+  echo "reloading . ~/.bashrc"
   . ~/.bashrc
+  echo ". ~/.bashrc returned $?"
 }
 
 testCompletionForKubectl() {
