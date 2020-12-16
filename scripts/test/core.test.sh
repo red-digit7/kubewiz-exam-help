@@ -14,6 +14,15 @@ loadEnv() {
   echo ". ~/.bashrc returned $?"
 }
 
+testBashrc() {
+  ANS=`cat  ~/.bashrc`
+  cat  ~/.bashrc
+  assertContains "$ANS" "source <(kubectl completion bash)"
+  assertContains "$ANS" "complete -F __start_kubectl k"
+  assertContains "$ANS" "export KUBE_EDITOR=vim"
+  assertContains "$ANS" "PS1"
+}
+
 testCompletionForKubectl() {
   complete -p | grep "__start_kubectl kubectl$"
   assertEquals 0 $?
