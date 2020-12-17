@@ -5,22 +5,19 @@ set -e
 DIR=$(dirname $(realpath $BASH_SOURCE))
 
 loadEnv() {
-  echo "leading $DIR/../src/core.sh"
-  source $DIR/../src/core.sh
+  rm -f ~/.kubewiz-core.sh
+  echo "loading $DIR/../src/core.sh"
+  . $DIR/../src/core.sh
   echo "source $DIR/../src/core.sh returned $?"
 
-  echo "reloading . ~/.bashrc"
-  . ~/.bashrc
-  echo ". ~/.bashrc returned $?"
+  echo "loading ~/.kubewiz-core.sh"
+  . ~/.kubewiz-core.sh
+  echo ". ~/.kubewiz-core.sh returned $?"
 }
 
 testBashrc() {
   ANS=`cat  ~/.bashrc`
-  cat  ~/.bashrc
-  assertContains "$ANS" "source <(kubectl completion bash)"
-  assertContains "$ANS" "complete -F __start_kubectl k"
-  assertContains "$ANS" "export KUBE_EDITOR=vim"
-  assertContains "$ANS" "PS1"
+  assertContains "$ANS" ". ~/.kubewiz-core.sh"
 }
 
 testCompletionForKubectl() {
@@ -59,9 +56,10 @@ testPS1() {
 }
 
 testAliasForK() {
+  eval "k get nodes"
   ANS=`eval "k get nodes"`
   assertEquals 0 $?
-  assertContains "$ANS" minikube 
+  assertContains "$ANS" v1.19.1 
 }
 
 testAliasForKn() {
