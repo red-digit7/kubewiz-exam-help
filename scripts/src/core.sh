@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# http://sh.kubewiz.com/core points here, i.e.:
+# https://raw.githubusercontent.com/red-digit7/kubewiz-exam-help/main/scripts/src/core.sh
+
 
 wget -q https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh -P ~/
 
